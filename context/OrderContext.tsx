@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+'use client';
+
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Order, CartItem } from '../types';
 
 interface OrderContextType {
@@ -11,23 +13,26 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 const API_URL = 'http://localhost:5000/api/orders';
 
 export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [orders, setOrders] = useState<Order[]>(() => {
-    // Initialize with local storage if available (for demo persistence)
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
     const saved = localStorage.getItem('demo_orders');
-    return saved ? JSON.parse(saved) : [];
-  });
+    if (saved) {
+      setOrders(JSON.parse(saved));
+    }
+  }, []);
 
   const createOrder = async (userId: string, items: CartItem[], total: number, shippingAddress: any, paymentId?: string) => {
     const mockOrder: Order = {
-        id: 'ORD-' + Math.floor(Math.random() * 100000),
-        userId,
-        items,
-        total,
-        status: 'Processing',
-        date: new Date().toISOString(),
-        shippingAddress,
-        paymentId
-      };
+      id: 'ORD-' + Math.floor(Math.random() * 100000),
+      userId,
+      items,
+      total,
+      status: 'Processing',
+      date: new Date().toISOString(),
+      shippingAddress,
+      paymentId
+    };
 
     try {
       // Transform cart items to match backend schema
@@ -43,7 +48,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
       const res = await fetch(API_URL, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${userToken}`
         },
@@ -51,7 +56,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           orderItems,
           shippingAddress,
           paymentMethod: 'Razorpay',
-          itemsPrice: total, 
+          itemsPrice: total,
           taxPrice: total * 0.08,
           shippingPrice: 0,
           totalPrice: total,
@@ -61,7 +66,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       });
 
       if (!res.ok) throw new Error('Failed to create order in DB');
-      
+
       const newOrder = await res.json();
       setOrders(prev => [newOrder, ...prev]);
     } catch (err) {
@@ -91,7 +96,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       console.warn("Backend offline: Loading local demo orders");
       // Return locally stored orders filtered by user (simulated)
       // In a real app, local storage isn't multi-user safe, but fine for demo
-      return orders; 
+      return orders;
     }
   };
 

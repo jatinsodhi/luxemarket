@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product, Review } from '../types';
 import { INITIAL_PRODUCTS } from '../constants';
@@ -12,10 +14,14 @@ interface ProductContextType {
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [products, setProducts] = useState<Product[]>(() => {
+  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
+
+  useEffect(() => {
     const saved = localStorage.getItem('products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
-  });
+    if (saved) {
+      setProducts(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(products));

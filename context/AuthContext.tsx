@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { User } from '../types';
 
@@ -6,6 +8,7 @@ interface AuthContextType {
   login: (email: string, password?: string) => Promise<void>;
   signup: (name: string, email: string, password: string, phoneNumber: string) => Promise<void>;
   verifyOtp: (email: string, otp: string) => Promise<void>;
+  resendOtp: (email: string) => Promise<void>;
   logout: () => void;
   error: string | null;
 }
@@ -13,13 +16,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Helper to handle API URLs (fallback to localhost if env not set)
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = '/api/auth';
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(() => {
+  const [user, setUser] = useState<User | null>(null);
+
+  React.useEffect(() => {
     const saved = localStorage.getItem('user');
-    return saved ? JSON.parse(saved) : null;
-  });
+    if (saved) {
+      setUser(JSON.parse(saved));
+    }
+  }, []);
   const [error, setError] = useState<string | null>(null);
 
   // Helper for demo fallback
@@ -39,9 +46,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const res = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password: password || 'password' }), 
+        body: JSON.stringify({ email, password: password || 'password' }),
       });
-      
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
 
@@ -59,14 +66,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       localStorage.setItem('user', JSON.stringify(loggedUser));
     } catch (err: any) {
       console.error("Login Failed:", err);
-      
+
       // Fallback for demo/offline mode
       if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
-         console.warn("Backend Unreachable: Logging in as Demo User");
-         const demoUser = createMockUser(email);
-         setUser(demoUser);
-         localStorage.setItem('user', JSON.stringify(demoUser));
-         return;
+        console.warn("Backend Unreachable: Logging in as Demo User");
+        const demoUser = createMockUser(email);
+        setUser(demoUser);
+        localStorage.setItem('user', JSON.stringify(demoUser));
+        return;
       }
 
       setError(err.message || "Login failed");
@@ -84,7 +91,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
-      
+
       return data;
     } catch (err: any) {
       // Fallback for demo/offline mode
@@ -118,17 +125,40 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         isVerified: true,
         token: data.token
       };
-      
+
       setUser(verifiedUser);
       localStorage.setItem('user', JSON.stringify(verifiedUser));
     } catch (err: any) {
-       // Fallback for demo/offline mode
-       if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+      // Fallback for demo/offline mode
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
         console.warn("Backend Unreachable: Simulating OTP Verify");
         const demoUser = createMockUser(email);
         setUser(demoUser);
         localStorage.setItem('user', JSON.stringify(demoUser));
         return;
+      }
+      setError(err.message);
+      throw err;
+    }
+  };
+
+  const resendOtp = async (email: string) => {
+    setError(null);
+    try {
+      const res = await fetch(`${API_URL}/resend-otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+
+      return data;
+    } catch (err: any) {
+      // Fallback for demo/offline mode
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+        console.warn("Backend Unreachable: Simulating Resend OTP");
+        return { message: 'Mock Resend OTP Successful' };
       }
       setError(err.message);
       throw err;
@@ -141,7 +171,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, verifyOtp, logout, error }}>
+    <AuthContext.Provider value={{ user, login, signup, verifyOtp, resendOtp, logout, error }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { CartItem, Product } from '../types';
 
@@ -14,10 +16,14 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>(() => {
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
     const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+    if (saved) {
+      setCart(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -27,7 +33,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
-        return prev.map(item => 
+        return prev.map(item =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
@@ -41,7 +47,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const updateQuantity = (id: string, quantity: number) => {
     if (quantity < 1) return;
-    setCart(prev => prev.map(item => 
+    setCart(prev => prev.map(item =>
       item.id === id ? { ...item, quantity } : item
     ));
   };

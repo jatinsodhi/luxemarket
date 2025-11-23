@@ -1,0 +1,91 @@
+﻿.next/dev/types/validator.ts(162,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/deliver/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]/deliver">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/dev/types/validator.ts(171,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/pay/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]/pay">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/dev/types/validator.ts(180,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/dev/types/validator.ts(189,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/myorders/[userId]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/myorders/[userId]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { userId: string; }; }) => Promise<NextResponse<any[]> | NextResponse<{ message: any; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ userId: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ userId: string; }>; }' is not assignable to type '{ params: { userId: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'userId' is missing in type 'Promise<{ userId: string; }>' but required in type '{ userId: string; }'.
+.next/dev/types/validator.ts(225,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/products/[id]/reviews/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/products/[id]/reviews">'.
+  Types of property 'POST' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ message: any; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/dev/types/validator.ts(234,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/products/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/products/[id]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(162,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/deliver/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]/deliver">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(171,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/pay/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]/pay">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(180,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/[id]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(189,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/orders/myorders/[userId]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/orders/myorders/[userId]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { userId: string; }; }) => Promise<NextResponse<any[]> | NextResponse<{ message: any; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ userId: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ userId: string; }>; }' is not assignable to type '{ params: { userId: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'userId' is missing in type 'Promise<{ userId: string; }>' but required in type '{ userId: string; }'.
+.next/types/validator.ts(225,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/products/[id]/reviews/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/products/[id]/reviews">'.
+  Types of property 'POST' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ message: any; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(234,31): error TS2344: Type 'typeof import("C:/Users/lenovo/Downloads/luxemarket---ai-powered-commerce (1)/app/api/products/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/products/[id]">'.
+  Types of property 'GET' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<any>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+models/User.ts(20,9): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+views/Login.tsx(80,19): error TS2322: Type '{ children: string; to: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps<any>> & LinkProps<...> & { ...; } & RefAttributes<...>'.
+  Property 'to' does not exist on type 'IntrinsicAttributes & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps<any>> & LinkProps<...> & { ...; } & RefAttributes<...>'.
+views/Profile.tsx(55,18): error TS2304: Cannot find name 'UserIcon'.
+views/Signup.tsx(177,19): error TS2322: Type '{ children: string; to: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps<any>> & LinkProps<...> & { ...; } & RefAttributes<...>'.
+  Property 'to' does not exist on type 'IntrinsicAttributes & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps<any>> & LinkProps<...> & { ...; } & RefAttributes<...>'.
